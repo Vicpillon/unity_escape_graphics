@@ -5,30 +5,21 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     
     public void OnClickNewGame()
     {
-        Debug.Log("»õ °ÔÀÓ");
+        //Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
 
     public void OnClickLoad()
     {
-        Debug.Log("·Îµå");
+        //Debug.Log("ï¿½Îµï¿½");
     }
 
     public void OnClickOption()
     {
-        Debug.Log("¿É¼Ç");
+        //Debug.Log("ï¿½É¼ï¿½");
     }
 
     public void OnClickQuit()
@@ -38,7 +29,7 @@ public class MainMenu : MonoBehaviour
 #else
         Application.Quit();
 #endif
-    }
+    } 
 
 
 
