@@ -18,7 +18,7 @@ public class Camera_move : MonoBehaviour
     void Update()
     {
         MouseRotation();
-        KeyboardMove();
+        //KeyboardMove();
     }
     void MouseRotation()
     {
@@ -35,7 +35,7 @@ public class Camera_move : MonoBehaviour
        
         transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
     }
-
+    /*
     void KeyboardMove()
     {
         
@@ -47,4 +47,5 @@ public class Camera_move : MonoBehaviour
         
         transform.Translate(dir * moveSpeed * Time.deltaTime);
     }
+    */
 }
