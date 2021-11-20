@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/start.unity
+    path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/ModernOffice_Interior/SampleScenes/jungwook/start.unity
     guid: f6f34f341e873e14fb328e8fe08016b4
+  - enabled: 1
+    path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/ModernOffice_Interior/SampleScenes/jungwook/GameStage.unity
+    guid: 2194fe559202da244a6cc0ad8cbc636d
   m_configObjects: {}

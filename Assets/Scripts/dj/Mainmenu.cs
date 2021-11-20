@@ -5,16 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
 {
-    public string SceneToLoad;
+    public string sceneName = "GameStage";
+
 
     public void LoadGame()
     {
-        SceneManager.LoadScene(SceneToLoad);
+        SceneManager.LoadScene(sceneName);
+    }
+    public void ClickExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

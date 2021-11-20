@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera_move : MonoBehaviour
 {
-    public float turnSpeed = 4.0f; 
+    public float turnSpeed = 3.0f; 
     public float moveSpeed = 2.0f; 
 
     private float xRotate = 0.0f;
@@ -21,17 +21,13 @@ public class Camera_move : MonoBehaviour
         //KeyboardMove();
     }
     void MouseRotation()
-    {
-        
+    {   
         float yRotateSize = Input.GetAxis("Mouse X") * turnSpeed;
-        
+        float xRotateSize = -Input.GetAxis("Mouse Y") * turnSpeed;
+
         float yRotate = transform.eulerAngles.y + yRotateSize;
 
-        
-        float xRotateSize = -Input.GetAxis("Mouse Y") * turnSpeed;
-        
-        xRotate = Mathf.Clamp(xRotate + xRotateSize, -45, 80);
-
+        xRotate = Mathf.Clamp(xRotate + xRotateSize, -45, 20);
        
         transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
     }
