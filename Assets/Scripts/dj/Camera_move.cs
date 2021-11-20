@@ -22,14 +22,16 @@ public class Camera_move : MonoBehaviour
     }
     void MouseRotation()
     {   
-        float yRotateSize = Input.GetAxis("Mouse X") * turnSpeed;
-        float xRotateSize = -Input.GetAxis("Mouse Y") * turnSpeed;
+        if(Input.GetMouseButton(1)){
+            float yRotateSize = Input.GetAxis("Mouse X") * turnSpeed;
+            float xRotateSize = -Input.GetAxis("Mouse Y") * turnSpeed;
 
-        float yRotate = transform.eulerAngles.y + yRotateSize;
+            float yRotate = transform.eulerAngles.y + yRotateSize;
 
-        xRotate = Mathf.Clamp(xRotate + xRotateSize, -45, 20);
-       
-        transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
+            xRotate = Mathf.Clamp(xRotate + xRotateSize, -45, 20);
+
+            transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
+        }
     }
     /*
     void KeyboardMove()
