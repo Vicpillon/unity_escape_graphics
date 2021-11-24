@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Clue1 : MonoBehaviour
 {
+    public bool check; 
+    public bool one_way;
     public bool end;
     bool onclick;
     bool startmoving;

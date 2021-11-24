@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class spotlight_move : MonoBehaviour
 {
+
     bool end;
     public GameObject  puzzle;
     Transform me;
@@ -67,7 +68,7 @@ public class spotlight_move : MonoBehaviour
 
                 }
                 OriginalRotation = me.rotation;
-                transform.rotation = Quaternion.Lerp(OriginalRotation, targetRotation, 0.005f);
+                transform.rotation = Quaternion.Lerp(OriginalRotation, targetRotation, 0.02f);
                 angle = Quaternion.Angle(OriginalRotation, targetRotation);
                 if (angle <= 10)
                 {

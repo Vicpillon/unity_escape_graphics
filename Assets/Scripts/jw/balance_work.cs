@@ -6,21 +6,68 @@ public class balance_work : MonoBehaviour
 {
     // Start is called before the first frame update
     public int clicked = 0;
-    float[] original_po = new float[3];
-    //float[] original_ro = new float[3];
+    public bool onclick;
+    public bool startmoving;
+    float angle;
+    Transform origin;
+    Transform target;
+    Quaternion OriginalRotation;
+    Quaternion targetRotation;
+    public float[] original_po = new float[3];
+    public int ranBall;
+    public Rigidbody ballR;
+    public string ballName;
+    public Vector3[] place = new Vector3[9];
+    public GameObject answer, nonAnswer, ball;
     
     void Start()
     {
         original_po[0] = transform.position.x;
         original_po[1] = transform.position.y;
         original_po[2] = transform.position.z;
+
+        for(int i=0; i<9; i++){
+            ballR = GameObject.Find("ball" + i).GetComponent<Rigidbody>();
+            nonAnswer = GameObject.Find("ball" + i);
+            ballR.mass = 2;
+            nonAnswer.tag = "clue2_nonAnswer";
+            place[i] = nonAnswer.transform.position;
+        }
+        
+        ranBall = (int)UnityEngine.Random.Range(0,9);
+        ballR = GameObject.Find("ball" + ranBall).GetComponent<Rigidbody>();
+        ballR.mass = 2.5f;
+        Debug.Log("ball"+ ranBall + " is Answer.");
+
+        answer = GameObject.Find("ball" + ranBall);
+        answer.tag = "clue2_answer";
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (onclick)
+        {
+            if (startmoving)
+            {
+                origin = GetComponent<Transform>();
+                OriginalRotation = origin.rotation;
+                targetRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                startmoving = false;
 
+                Rigidbody r = GetComponent<Rigidbody>();
+                Vector3 v = new Vector3(original_po[0], original_po[1], original_po[2]);
+
+                r.isKinematic = true;
+                transform.position = v;
+            }  
+            origin = GetComponent<Transform>();
+            OriginalRotation = origin.rotation;
+            transform.rotation = Quaternion.Slerp(OriginalRotation, targetRotation , 0.01f);
+            angle = Quaternion.Angle(OriginalRotation, targetRotation);
+            if (angle <= 0.01) { onclick = false; transform.rotation = targetRotation; }
+        }
     }
+
 
     public void work(){
         if(clicked != 2){
@@ -33,12 +80,38 @@ public class balance_work : MonoBehaviour
     public void reset(){
         Rigidbody r = GetComponent<Rigidbody>();
         Vector3 v = new Vector3(original_po[0], original_po[1], original_po[2]);
-        Vector3 ro = new Vector3((float)0.0, (float)0.0 ,(float)0.0);
-        Quaternion ro_q = Quaternion.Euler(ro); 
-        transform.position = v;
-        transform.rotation = ro_q;
-        r.isKinematic = true;
 
+        r.isKinematic = true;
+        transform.position = v;
+        
         clicked = 0;
+
+        for(int i=0; i<9; i++){
+            ballName = "ball" + i;
+            ballR = GameObject.Find("ball" + i).GetComponent<Rigidbody>();
+            nonAnswer = GameObject.Find("ball" + i);
+            ballR.mass = 2;
+            nonAnswer.tag = "clue2_nonAnswer";
+        }
+        
+        ranBall = (int)UnityEngine.Random.Range(0,9);
+        ballR = GameObject.Find("ball" + ranBall).GetComponent<Rigidbody>();
+        ballR.mass = 2.5f;
+        Debug.Log("ball"+ ranBall + " is Answer.");
+
+        answer = GameObject.Find("ball" + ranBall);
+        answer.tag = "clue2_answer";
+
+        ballBackToPlace();
+    }
+
+    public void ballBackToPlace(){
+        for(int i=0;i<9;i++){
+            ball = GameObject.Find("ball" + i);
+            ball.transform.position = place[i];
+            ballR = GameObject.Find("ball" + i).GetComponent<Rigidbody>();
+            ballR.isKinematic = true;
+            ballR.isKinematic = false;
+        }
     }
 }

@@ -4,47 +4,76 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5;
-    public float gravity = -9.81f;
-    public float jumpPower = 2.5f;
-    float yVelocity;
-    bool sDown;
-
-    CharacterController cc;
+    public float movementSpeed = 5f;
+    public float mouseSensitivity = 2f;
+    public float upDownRange = 90;
+    public float jumpSpeed = 5;
+    public float downSpeed = 5;
+    private Vector3 speed;
+    private float forwardSpeed;
+    private float sideSpeed;
+    private float rotLeftRight;
+    private float rotUpDown;
+    private float verticalRotation = 0f;
+    private float verticalVelocity = 0f;
     Animator ani;
-    // Start is called before the first frame update
+    private CharacterController cc;
+
+    // Use this for initialization
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        ani = GetComponentInChildren<Animator>();
+        ani = GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        yVelocity += gravity * Time.deltaTime;
-        sDown = Input.GetButtonDown("Jump");
-        if (Input.GetButtonDown("Jump"))
-        {
-            yVelocity = jumpPower;
-        }
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
 
-        Vector3 dir = Vector3.right * h + Vector3.forward * v;
-
-        ani.SetBool("isWalk", dir != Vector3.zero);
-        ani.SetBool("isJump", sDown);
-
-        dir = Camera.main.transform.TransformDirection(dir);
-        dir.Normalize();
-        dir.y = 0;
-        //transform.LookAt(transform.position + dir);
-
-        dir.y = yVelocity;
-        cc.Move(dir * speed * Time.deltaTime);
-
-
+        FPMove();
+        FPRotate();
 
     }
+
+
+
+    void FPMove()
+    {
+
+        forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
+        sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
+
+
+        if (cc.isGrounded && Input.GetButtonDown("Jump"))
+            verticalVelocity = jumpSpeed;
+
+
+
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+        speed = new Vector3(sideSpeed, verticalVelocity, forwardSpeed);
+        speed = transform.rotation * speed;
+
+
+        ani.SetBool("isWalk", (Input.GetAxis("Vertical") != 0) || (Input.GetAxis("Horizontal") != 0));
+        ani.SetBool("isJump", Input.GetButtonDown("Jump")  );
+        cc.Move(speed * Time.deltaTime);
+    }
+
+
+    void FPRotate()
+    {
+
+        rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
+        transform.Rotate(0f, rotLeftRight, 0f);
+        verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+        Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+    }
+
+
+    // https://wemakejoy.tistory.com/43 Âü°í
+
 }

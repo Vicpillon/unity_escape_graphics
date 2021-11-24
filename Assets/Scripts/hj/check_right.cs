@@ -28,19 +28,25 @@ public class check_right : MonoBehaviour
         bottle = GameObject.FindGameObjectsWithTag("puzzle");
         for (int i = 0; i < 16; i++)
         {
-            if (i == 4 || i == 7 || i == 9 || i == 11 || i == 13 || i == 15)
+            if (bottle[i].GetComponent<Clue1>().one_way)
             {
-                if (bottle[i].GetComponent<Clue1>().dir == 1 || bottle[i].GetComponent<Clue1>().dir == 3) seed = seed && true;
-                else seed = seed && false;
-                continue;
-
+                if (bottle[i].GetComponent<Clue1>().dir == 1 || bottle[i].GetComponent<Clue1>().dir == 3)
+                {
+                    seed = seed && true;
+                    bottle[i].GetComponent<Clue1>().check = true;
+                }
+                else
+                {
+                    seed = seed && false;
+                    bottle[i].GetComponent<Clue1>().check = false; 
+                }
             }
-            if (bottle[i].GetComponent<Clue1>().dir == answer[i])
+            else
             {
-                seed = seed && true;
+                if (bottle[i].GetComponent<Clue1>().dir == 3) { seed = seed && true; bottle[i].GetComponent<Clue1>().check = true; }
+                else { seed = seed && false; bottle[i].GetComponent<Clue1>().check = false; ;}
             }
-            else { seed = seed && false; }
-
+            
             
         }
         
