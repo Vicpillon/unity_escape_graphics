@@ -22,8 +22,8 @@ public class total_clue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waterCan = GameObject.Find("CornerCabinet1").transform.Find("WateringCan");
-        audio = GetComponent<AudioSource>();
+        //waterCan = GameObject.Find("CornerCabinet1").transform.Find("WateringCan");
+        //audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

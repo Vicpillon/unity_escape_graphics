@@ -13,10 +13,12 @@ public class ultimate_answer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnTriggerEnter(Collider col){
+    /*void OnTriggerEnter(Collider col){
         var answer = col.gameObject;
-        
-        if(answer.tag == "ultimate_key"){
+        Debug.Log("온트리거 확인");
+
+        if(answer.tag == "ultimate_key" && rotate_script.ultimateEnd){
+            Debug.Log("여기 되냐고!!!");
             ultimate_end();
         }
 
@@ -24,6 +26,8 @@ public class ultimate_answer : MonoBehaviour
 
     void ultimate_end()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("GameClear");
-    }
+
+    }*/
 }

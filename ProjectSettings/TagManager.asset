@@ -19,6 +19,8 @@ TagManager:
   - order_ui
   - water_ui
   - submenuback
+  - ultimate_key
+  - door_1
   layers:
   - Default
   - TransparentFX
