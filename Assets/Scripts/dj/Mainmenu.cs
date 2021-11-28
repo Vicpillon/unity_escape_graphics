@@ -8,7 +8,7 @@ public class Mainmenu : MonoBehaviour
 {
     public string sceneName = "GameStage";
     public GameObject menuPanel;//submenu
-
+    bool stop;
     public void LoadGame()
     {
         SceneManager.LoadScene(sceneName);
@@ -25,13 +25,27 @@ public class Mainmenu : MonoBehaviour
 
     public void Menu_button()
     {   //esc ¥©∏£∏È submenu ≥™ø»
+       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;//≈∏¿Ã∏” ∏ÿ√„
-            menuPanel.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-           
-        }
+            if (!stop)
+            {
+                stop = true;
+                Time.timeScale = 0;//≈∏¿Ã∏” ∏ÿ√„
+                menuPanel.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                stop = false;
+                Time.timeScale = 1;//≈∏¿Ã∏” ¡ˆº”
+                menuPanel.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+                    
+                    
+          }
+       
     }
 
     public void Continue()
@@ -46,7 +60,7 @@ public class Mainmenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stop = false;
     }
 
     // Update is called once per frame
