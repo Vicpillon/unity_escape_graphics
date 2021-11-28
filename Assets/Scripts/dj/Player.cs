@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         FPMove();
         FPRotate();
 
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
 
         ani.SetBool("isWalk", (Input.GetAxis("Vertical") != 0) || (Input.GetAxis("Horizontal") != 0));
-        ani.SetBool("isJump", Input.GetButtonDown("Jump")  );
+        ani.SetBool("isJump", Input.GetButtonDown("Jump"));
         cc.Move(speed * Time.deltaTime);
     }
 

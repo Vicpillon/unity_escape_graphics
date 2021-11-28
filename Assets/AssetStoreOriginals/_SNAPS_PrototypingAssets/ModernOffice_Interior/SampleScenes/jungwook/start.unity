@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: GameStage
+  menuPanel: {fileID: 0}
 --- !u!1 &208969200
 GameObject:
   m_ObjectHideFlags: 0

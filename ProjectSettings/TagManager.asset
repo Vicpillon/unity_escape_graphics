@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - door
+  - keypad
+  - target
+  - button
+  - puzzle
+  - key
+  - battery
+  - spotlight_target
+  - is_right
+  - spotlight_hj
+  - clue2_answer
+  - clue2_nonAnswer
+  - order_ui
+  - water_ui
+  - submenuback
   layers:
   - Default
   - TransparentFX

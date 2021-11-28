@@ -64,7 +64,7 @@ public class balance_work : MonoBehaviour
             OriginalRotation = origin.rotation;
             transform.rotation = Quaternion.Slerp(OriginalRotation, targetRotation , 0.01f);
             angle = Quaternion.Angle(OriginalRotation, targetRotation);
-            if (angle <= 0.01) { onclick = false; transform.rotation = targetRotation; }
+            if (angle <= 0.1) { onclick = false; transform.rotation = targetRotation; }
         }
     }
 
@@ -78,11 +78,14 @@ public class balance_work : MonoBehaviour
     }
 
     public void reset(){
+
         Rigidbody r = GetComponent<Rigidbody>();
         Vector3 v = new Vector3(original_po[0], original_po[1], original_po[2]);
 
-        r.isKinematic = true;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         transform.position = v;
+        r.isKinematic = true;
+        
         
         clicked = 0;
 
