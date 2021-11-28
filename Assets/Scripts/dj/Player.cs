@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0f, rotLeftRight, 0f);
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -45, 20);
+        verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 
