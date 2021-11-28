@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/ModernOffice_Interior/SampleScenes/jungwook/GameStage.unity
     guid: 2194fe559202da244a6cc0ad8cbc636d
+  - enabled: 1
+    path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/ModernOffice_Interior/SampleScenes/jungwook/GameClear.unity
+    guid: 1700a3305300cfc4da2c4477900a20c2
+  - enabled: 1
+    path: Assets/AssetStoreOriginals/_SNAPS_PrototypingAssets/ModernOffice_Interior/SampleScenes/jungwook/GameOver.unity
+    guid: b660524722f1f2e4faf45b33c6fb930b
   m_configObjects: {}

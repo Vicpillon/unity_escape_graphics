@@ -8,12 +8,15 @@ public class grab_key : MonoBehaviour
     double dtor(double a){
     return a*Math.PI/180;
     }
+    AudioSource grabAudio;
 
     void Start(){
         this.tag = "key";
+        grabAudio = GameObject.Find("grabAudio").GetComponent<AudioSource>();
     }
 
     void OnMouseDown(){
+        grabAudio.Play();
         float[] camPo = new float[3] {Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z};
 
         Vector3 v = new Vector3(

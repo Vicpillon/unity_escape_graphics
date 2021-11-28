@@ -5,9 +5,10 @@ using UnityEngine;
 public class open_door : MonoBehaviour
 {
     // Start is called before the first frame update
+    AudioSource opening;
     void Start()
     {
-        
+        opening = GameObject.Find("door").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,8 +21,10 @@ public class open_door : MonoBehaviour
         var answer = col.gameObject;
         
         if(answer.tag == "key"){
+            opening.Play();
             open_clue2();
         }
+
     }
 
     void open_clue2(){
@@ -29,4 +32,5 @@ public class open_door : MonoBehaviour
         door = GameObject.Find("door").GetComponent<enterDoor>();
         door.open = true;
     }
+
 }

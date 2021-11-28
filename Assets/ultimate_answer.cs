@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class ultimate_answer : MonoBehaviour
 {
@@ -11,8 +13,17 @@ public class ultimate_answer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void OnTriggerEnter(Collider col){
+        var answer = col.gameObject;
         
+        if(answer.tag == "ultimate_key"){
+            ultimate_end();
+        }
+
+    }
+
+    void ultimate_end()
+    {
+        SceneManager.LoadScene("GameClear");
     }
 }

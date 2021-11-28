@@ -32,17 +32,8 @@ public class phone_script : MonoBehaviour
 
             if(target.Equals(gameObject))
             {
-                // if(count == 0)
-                //     {
-                //         //GetComponent<AudioSource>().Play();
-                //         onclick = false;
-                //         count = 1;
-                //     }    
-                //     else
-                //     {
-                //         transform.Translate(0.5f,0,-0.5f);
-                //         count = 0;
-                //     }
+                //로테이트멈추고
+                //audio.Play();
             }
         }
     }

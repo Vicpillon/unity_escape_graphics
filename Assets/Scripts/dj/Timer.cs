@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
 
     public void LoadOver()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(sceneName);
         //게임 오버시 gameover scene으로 넘어감
     }

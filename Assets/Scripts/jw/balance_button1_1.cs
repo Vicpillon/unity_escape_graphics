@@ -9,9 +9,12 @@ public class balance_button1_1 : MonoBehaviour
     Transform top;
     Vector3 visible = new Vector3(36.95f, 0.6f, -8.7f);
     Vector3 invisible = new Vector3(36.95f, -2.0f, -8.7f);
+
+    AudioSource clickAudio;
     void Start()
     {
         top = GameObject.Find("balance_top").transform;
+        clickAudio = GetComponent<AudioSource>();
     }
 
     void Update(){
@@ -29,6 +32,7 @@ public class balance_button1_1 : MonoBehaviour
     void OnMouseDown()
     {
         if(top.rotation.eulerAngles.x == 0.0f){
+            clickAudio.Play();
             a.work();
             if(!a.onclick){
                 Invoke("upBalance", 3.0f);
