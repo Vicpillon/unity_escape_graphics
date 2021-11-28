@@ -8,7 +8,7 @@ public class total_clue : MonoBehaviour
     //public static int check = 0;
     public Text txt;
     public Text txt1;
-    int end =0;
+    public static int end =0;
 
     public static bool first = false;
     public static bool second = false;
@@ -31,16 +31,18 @@ public class total_clue : MonoBehaviour
     {
         if(first && second && third && fourth)
         {   
-            print("여기 왔는가");
+            //print("여기 왔는가");
             //audio.Play();
             txt1.text = " 힌트 : 이진수 입니다.";
             txt.text = "?";
-            end = 1;
+            StartCoroutine(Wait());
+            
         }
     }
 
-    // IEnumerator Wait()
-    // {
-      
-    // }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3.0f);
+        end = 1;
+    }
 }

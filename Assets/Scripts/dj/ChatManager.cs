@@ -23,6 +23,15 @@ public class ChatManager : MonoBehaviour
 
     void Update()
     {
+        if (order_ui.activate == 1)
+        {
+            chatPanel.SetActive(true);
+        }
+        if(total_clue.end ==1)
+        {
+            chatPanel.SetActive(false);
+        }
+     
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

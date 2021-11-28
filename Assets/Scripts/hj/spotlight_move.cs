@@ -10,6 +10,7 @@ public class spotlight_move : MonoBehaviour
     Transform me;
     Transform target;
     Light light_on;
+    public Text txt;
     
     AudioSource rotate_audio;
     bool rotate_start;
@@ -88,6 +89,7 @@ public class spotlight_move : MonoBehaviour
                         key.AddComponent<BoxCollider>();
                         battery.AddComponent<Rigidbody>();
                     }
+                    txt.text = "4";
 
                 }
             }
@@ -97,4 +99,5 @@ public class spotlight_move : MonoBehaviour
             }
         }
         }
+        
     }

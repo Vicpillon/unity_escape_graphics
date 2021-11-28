@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class enter_script : MonoBehaviour
+public class answer_pressed : MonoBehaviour
 {
-    public Text txt;
-    public bool enter = false;
+    public static bool pressed = false;
 
-    GameObject keypad;
-
+    GameObject keypad; 
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +16,14 @@ public class enter_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(answer_pressed.pressed && enter)
-        {
-            txt.text = "4";
-        }
+        
     }
+
     private void OnMouseDown()
     {
         if (!keypad.GetComponent<main_keypad>().open)
         {
-            enter = true;
-
+            pressed = true;
         }
     }
 }

@@ -7,6 +7,7 @@ public class order_ui : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text txt;
+    public static int activate = 0;
 
     void Start()
     {
@@ -20,9 +21,10 @@ public class order_ui : MonoBehaviour
     
         if(wateringcan_script.order == 1)
         {
+            activate = 1;
             txt.text = "드래그를 이용해 물을 채워주세요 ...";
             StartCoroutine(Wait());
-            print("코루틴 되나?");
+            //print("코루틴 되나?");
         }
 
             // if (wateringcan_script.order == 2)
@@ -34,6 +36,7 @@ public class order_ui : MonoBehaviour
 
         if (water_ui.stop_watering == 1)
         {
+            activate = 1;
             //gameObject.SetActive(false);
             txt.text = "물을 더이상 채우지 않아도 됩니다.";
             StartCoroutine(Wait2());
@@ -45,6 +48,7 @@ public class order_ui : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         txt.text = " ";
         wateringcan_script.order = 2;
+        activate = 0;
     }
 
     IEnumerator Wait2()
@@ -57,5 +61,6 @@ public class order_ui : MonoBehaviour
         collider_clue_1.touch = 1;
         collider_clue_2.touch = 1;
         collider_clue_3.touch = 1;
+        activate = 0;
     }
 }

@@ -8,7 +8,7 @@ public class phone_script : MonoBehaviour
     private int count;
     private GameObject target;
 
-    public Transform obj;
+    //public Transform obj;
     float rotateSpeed = 10.0f;
     Vector3 offset;
 

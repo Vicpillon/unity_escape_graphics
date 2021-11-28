@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private float rotUpDown;
     private float verticalRotation = 0f;
     private float verticalVelocity = 0f;
+    bool Jumping = false;
     Animator ani;
     private CharacterController cc;
 
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         FPMove();
         FPRotate();
 
@@ -41,15 +42,19 @@ public class Player : MonoBehaviour
 
     void FPMove()
     {
+        Jumping = false;
 
         forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
         sideSpeed = Input.GetAxis("Horizontal") * movementSpeed;
 
 
         if (cc.isGrounded && Input.GetButtonDown("Jump"))
+        {
             verticalVelocity = jumpSpeed;
 
-
+        }
+        if (!cc.isGrounded)
+            Jumping = true;
 
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
@@ -59,6 +64,7 @@ public class Player : MonoBehaviour
 
         ani.SetBool("isWalk", (Input.GetAxis("Vertical") != 0) || (Input.GetAxis("Horizontal") != 0));
         ani.SetBool("isJump", Input.GetButtonDown("Jump"));
+        ani.SetBool("Jumping", Jumping);
         cc.Move(speed * Time.deltaTime);
     }
 
@@ -69,7 +75,7 @@ public class Player : MonoBehaviour
         rotLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0f, rotLeftRight, 0f);
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+        verticalRotation = Mathf.Clamp(verticalRotation, -45, 20);
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
     }
 
