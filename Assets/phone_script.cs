@@ -8,9 +8,12 @@ public class phone_script : MonoBehaviour
     private int count;
     private GameObject target;
 
-    //public Transform obj;
+    public static int hello = 0;
+
     float rotateSpeed = 10.0f;
     Vector3 offset;
+
+    AudioSource audio;
 
     
     // Start is called before the first frame update
@@ -18,7 +21,12 @@ public class phone_script : MonoBehaviour
     {
         onclick = false;
         count = 0;
-        //audio = GetComponent<AudioSource>();
+        
+    }
+
+    void Awake()
+    {
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,14 +34,15 @@ public class phone_script : MonoBehaviour
     {
         transform.Rotate(Vector3.forward * rotateSpeed);
 
+
         if (Input.GetMouseButtonDown(0))
         {
             target = GetClickedObject();
 
             if(target.Equals(gameObject))
             {
-                //로테이트멈추고
-                //audio.Play();
+                hello = 1;
+                audio.Play();
             }
         }
     }

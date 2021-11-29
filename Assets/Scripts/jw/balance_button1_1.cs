@@ -13,6 +13,7 @@ public class balance_button1_1 : MonoBehaviour
     AudioSource clickAudio;
     void Start()
     {
+        transform.position = invisible;
         top = GameObject.Find("balance_top").transform;
         clickAudio = GetComponent<AudioSource>();
     }

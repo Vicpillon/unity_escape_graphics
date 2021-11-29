@@ -9,7 +9,7 @@ public class ChatManager : MonoBehaviour
     public Text ChatText; // 실제 채팅이 나오는 텍스트
     //public Text CharacterName; // 캐릭터 이름이 나오는 텍스트
     public GameObject chatPanel;
-
+    AudioSource audio;
     public string writerText = "";
 
     bool isButtonClicked = false;
@@ -20,7 +20,11 @@ public class ChatManager : MonoBehaviour
         chatPanel.SetActive(true);//대화 패널 on
         StartCoroutine(Text());
     }
-
+    void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+    // Awake함수 추가해주고 
     void Update()
     {
         if (order_ui.activate == 1)
@@ -37,7 +41,10 @@ public class ChatManager : MonoBehaviour
         {
             isButtonClicked = true;
         }
-
+        if (phone_script.hello == 1)
+        {
+            audio.Stop();
+        }
     }
 
 
@@ -76,5 +83,6 @@ public class ChatManager : MonoBehaviour
         yield return StartCoroutine(NormalChat("선배에게 전화해 봐야겠어!"));
         Time.timeScale = 1;
         chatPanel.SetActive(false);
+        audio.Play();
     }
 }

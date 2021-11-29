@@ -46,8 +46,6 @@ public class rotate_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * rotateSpeed);
-
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         transform.Rotate(Vector3.down * rotateSpeed);
@@ -72,10 +70,10 @@ public class rotate_script : MonoBehaviour
 
     void OnTriggerEnter(Collider col){
         var answer = col.gameObject;
-        Debug.Log("온트리거 확인");
+        Debug.Log("??????? ???");
 
         if(answer.tag == "door_1" && ultimateEnd){
-            Debug.Log("여기 되냐고!!!");
+            Debug.Log("???? ????!!!");
             ultimate_end();
         }
 
